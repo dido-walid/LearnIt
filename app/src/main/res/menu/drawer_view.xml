@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item
+    android:id="@+id/languages"
+    android:title="@string/title_languages">
+    <menu>
+    </menu>
+  </item>
+
+  <item android:title="@string/title_actions">
+    <menu>
+      <item
+        android:id="@+id/new_language"
+        android:icon="@drawable/ic_action_new_label"
+        android:title="@string/new_language"/>
+    </menu>
+  </item>
+
+  <group android:checkableBehavior="single">
+    <item
+      android:id="@+id/license"
+      android:icon="@drawable/ic_action_about"
+      android:title="@string/action_license"/>
+  </group>
+</menu>

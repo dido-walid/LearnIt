@@ -1,0 +1,21 @@
+<resources>
+  <string name="app_name">Learn It</string>
+
+  <string name="confirm">OK</string>
+  <string name="cancel">Cancel</string>
+
+  <string name="new_language">New language</string>
+  <string name="new_vocabulary">New word</string>
+
+  <string name="title_languages">Languages</string>
+  <string name="title_actions">Actions</string>
+
+  <string name="action_remove">Remove</string>
+  <string name="action_license">Open Source Licenses</string>
+
+  <string name="field_original">Original</string>
+  <string name="field_translated">Translated</string>
+  <string name="field_language">Language</string>
+
+  <string name="error_language_not_selected">You must specify a language.</string>
+</resources>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<notices>
+  <notice>
+    <name>support-v4</name>
+    <copyright>Copyright (c) 2005-2013, The Android Open Source Project</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+  <notice>
+    <name>appcompat-v7</name>
+    <copyright>Copyright (C) 2012 The Android Open Source Project</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+  <notice>
+    <name>recyclerview-v7</name>
+    <copyright>Copyright (c) 2014, The Android Open Source Project</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+  <notice>
+    <name>cardview-v7</name>
+    <copyright>Copyright (c) 2014, The Android Open Source Project</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+  <notice>
+    <name>design</name>
+    <copyright>Copyright (c) 2014, The Android Open Source Project</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+  <notice>
+    <name>Dagger</name>
+    <url>http://square.github.io/dagger</url>
+    <copyright>Copyright 2012 Square, Inc.</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+  <notice>
+    <name>ButterKnife</name>
+    <url>http://jakewharton.github.io/butterknife</url>
+    <copyright>Copyright 2013 Jake Wharton</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+  <notice>
+    <name>Timber</name>
+    <url>http://github.com/JakeWharton/timber</url>
+    <copyright>Copyright 2013 Jake Wharton</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+  <notice>
+    <name>SQLBrite</name>
+    <url>https://github.com/square/sqlbrite</url>
+    <copyright>Copyright 2015 Square, Inc.</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+  <notice>
+    <name>RxJava</name>
+    <url>https://github.com/ReactiveX/RxJava</url>
+    <copyright>Copyright 2013 Netflix, Inc.</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+  <notice>
+    <name>RxAndroid</name>
+    <url>https://github.com/ReactiveX/RxAndroid</url>
+    <copyright>Copyright 2013 Netflix, Inc.</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+  <notice>
+    <name>auto-parcel</name>
+    <url>https://github.com/frankiesardo/auto-parcel</url>
+    <copyright>Copyright 2014 Frankie Sardo</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+  <notice>
+    <name>AndroidSwipeLayout</name>
+    <url>https://github.com/daimajia/AndroidSwipeLayout</url>
+    <copyright>Copyright (c) 2014 代码家</copyright>
+    <license>MIT License</license>
+  </notice>
+  <notice>
+    <name>LicensesDialog</name>
+    <url>https://psdev.de/LicensesDialog/</url>
+    <copyright>Copyright 2013 Philip Schiffer</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+</notices>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.daimajia.swipe.SwipeLayout
+  android:id="@+id/swipe"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:swipe="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  swipe:leftEdgeSwipeOffset="0dp"
+  swipe:rightEdgeSwipeOffset="0dp">
+
+  <!-- Bottom View Start-->
+  <FrameLayout
+    android:id="@+id/bottom_wrapper"
+    android:layout_width="160dp"
+    android:layout_height="match_parent"
+    android:background="@color/delete_action"
+    android:weightSum="1">
+
+    <ImageView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:importantForAccessibility="no"
+      android:src="@drawable/ic_action_remove"/>
+  </FrameLayout>
+  <!-- Bottom View End-->
+
+  <!-- Surface View Start -->
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <android.support.v7.widget.CardView
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_marginLeft="@dimen/card_horizontal_margin"
+      android:layout_marginRight="@dimen/card_left_horizontal_margin"
+      android:layout_marginTop="@dimen/card_vertical_margin"
+      android:layout_marginBottom="@dimen/card_vertical_margin"
+      android:layout_weight="1">
+
+      <TextView
+        android:id="@+id/tv_original"
+        style="@style/Widget.CardContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"/>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_marginLeft="@dimen/card_right_horizontal_margin"
+      android:layout_marginRight="@dimen/card_horizontal_margin"
+      android:layout_marginTop="@dimen/card_vertical_margin"
+      android:layout_marginBottom="@dimen/card_vertical_margin"
+      android:layout_weight="1">
+
+      <TextView
+        android:id="@+id/tv_translated"
+        style="@style/Widget.CardContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"/>
+    </android.support.v7.widget.CardView>
+
+  </LinearLayout>
+  <!-- Surface View End -->
+
+</com.daimajia.swipe.SwipeLayout>
