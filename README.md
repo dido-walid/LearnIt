@@ -3,12 +3,13 @@
 # What is it?
 
 Learn It won't try to learn a specific language!
+
 Learn It won't try to buy you a magic method to learn a language quickly!
 
-No, Learn It make one thing but try to make it well!
+No, Learn It makes one thing but try to make it well!
 
-It is an assistant which help you to learn your lists of vocabulary.
-There aren't miracle in the life. If you would like something, you must work hard to got it.
+It is an assistant which helps you to learn your lists of vocabulary.
+There aren't miracles in life. If you want something, you must work hard to got it.
 Learn It has been developed with this philosophy.
 
 ![Main screen](captures/Capture01.png) ![Drawer menu](captures/Capture02.png)
