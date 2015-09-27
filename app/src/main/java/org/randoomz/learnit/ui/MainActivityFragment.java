@@ -35,9 +35,6 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 
-/**
- * A placeholder fragment containing a simple view.
- */
 public class MainActivityFragment extends Fragment implements View.OnClickListener, ListVocabularyAdapter.VocabularySwiped, MainActivity.LanguageSelectedListener {
 
   static MainActivityFragment newInstance() {
