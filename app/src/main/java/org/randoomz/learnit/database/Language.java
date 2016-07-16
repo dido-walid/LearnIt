@@ -32,19 +32,13 @@ public abstract class Language implements Parcelable {
 
   public static Func1<SqlBrite.Query, List<Language>> MAP = new Func1<SqlBrite.Query, List<Language>>() {
     @Override public List<Language> call(SqlBrite.Query query) {
-      Cursor cursor = query.run();
-      try {
+      try (Cursor cursor = query.run()) {
         List<Language> values = new ArrayList<>(cursor.getCount());
 
         while (cursor.moveToNext()) {
-          values.add(new AutoParcel_Language(
-              DbUtils.getLong(cursor, ID),
-              DbUtils.getString(cursor, LANGUAGE)
-          ));
+          values.add(new AutoParcel_Language(DbUtils.getLong(cursor, ID), DbUtils.getString(cursor, LANGUAGE)));
         }
         return values;
-      } finally {
-        cursor.close();
       }
     }
   };

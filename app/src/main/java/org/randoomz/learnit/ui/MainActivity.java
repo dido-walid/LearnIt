@@ -35,7 +35,7 @@ import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
   public static final String CURRENT_LANGUAGE = "current_pos";
 
   private List<Language> languages = Collections.emptyList();
@@ -62,12 +62,11 @@ public class MainActivity extends AppCompatActivity {
       getSupportFragmentManager().beginTransaction()
           .add(R.id.content, fragment)
           .commit();
-      listener = fragment;
     }
 
     navigationView = (NavigationView) findViewById(R.id.nav_view);
     if (navigationView != null) {
-      setupDrawerContent(navigationView);
+      navigationView.setNavigationItemSelectedListener(this);
     }
   }
 
@@ -84,14 +83,9 @@ public class MainActivity extends AppCompatActivity {
             final SubMenu subMenuLanguages = item.getSubMenu();
             subMenuLanguages.clear();
             for (int i = 0; i < languages.size(); i++) {
-              subMenuLanguages.add(Menu.NONE, i, i, languages.get(i).language());
+              subMenuLanguages.add(Menu.NONE, i, i, languages.get(i).language()).setCheckable(true);
             }
-            // TODO https://code.google.com/p/android/issues/detail?id=176300
-            item.setTitle(item.getTitle());
-            if (!languages.isEmpty()) {
-              listener.onLanguageSelected(languages.get(currentPosition));
-              subMenuLanguages.getItem(currentPosition).setChecked(true);
-            }
+            onNavigationItemSelected(subMenuLanguages.getItem(currentPosition));
           }
         });
   }
@@ -99,16 +93,6 @@ public class MainActivity extends AppCompatActivity {
   @Override protected void onPause() {
     super.onPause();
     subscribe.unsubscribe();
-  }
-
-  @Override public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-    super.onSaveInstanceState(outState, outPersistentState);
-    outState.putInt(CURRENT_LANGUAGE, currentPosition);
-  }
-
-  @Override protected void onRestoreInstanceState(Bundle savedInstanceState) {
-    super.onRestoreInstanceState(savedInstanceState);
-    currentPosition = savedInstanceState.getParcelable(CURRENT_LANGUAGE);
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -136,50 +120,59 @@ public class MainActivity extends AppCompatActivity {
     return super.onOptionsItemSelected(item);
   }
 
-  private void setupDrawerContent(NavigationView navigationView) {
-    navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-      @Override
-      public boolean onNavigationItemSelected(MenuItem menuItem) {
-        switch (menuItem.getItemId()) {
-          case R.id.new_language:
-            final LayoutInflater layoutInflater = getLayoutInflater();
-            final View inflate = layoutInflater.inflate(R.layout.dialog_new_language, null);
-            final EditText etLanguage = (EditText) inflate.findViewById(R.id.et_language);
-            new AlertDialog.Builder(MainActivity.this)
-                .setTitle(R.string.new_language)
-                .setView(inflate)
-                .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
-                  @Override public void onClick(DialogInterface dialog, int which) {
-                    currentPosition = languages.size();
-                    db.insert(Language.TABLE, new Language.Builder()
-                        .language(etLanguage.getText().toString().trim())
-                        .build());
-                  }
-                })
-                .setNegativeButton(R.string.cancel, null)
-                .show();
-            break;
-          case R.id.license:
-            new LicensesDialog.Builder(MainActivity.this)
-                .setNotices(R.raw.notices)
-                .build()
-                .show();
-            break;
-          default:
-            if (listener != null) {
-              MainActivity.this.currentPosition = menuItem.getItemId();
-              final Language current = MainActivity.this.languages.get(MainActivity.this.currentPosition);
-              listener.onLanguageSelected(current);
-            }
-            menuItem.setChecked(true);
+  @Override public boolean onNavigationItemSelected(MenuItem menuItem) {
+    switch (menuItem.getItemId()) {
+      case R.id.new_language:
+        final LayoutInflater layoutInflater = getLayoutInflater();
+        final View inflate = layoutInflater.inflate(R.layout.dialog_new_language, null);
+        final EditText etLanguage = (EditText) inflate.findViewById(R.id.et_language);
+        new AlertDialog.Builder(this)
+            .setTitle(R.string.new_language)
+            .setView(inflate)
+            .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
+              @Override public void onClick(DialogInterface dialog, int which) {
+                currentPosition = languages.size();
+                db.insert(Language.TABLE, new Language.Builder()
+                    .language(etLanguage.getText().toString().trim())
+                    .build());
+              }
+            })
+            .setNegativeButton(R.string.cancel, null)
+            .show();
+        break;
+      case R.id.license:
+        new LicensesDialog.Builder(this)
+            .setNotices(R.raw.notices)
+            .build()
+            .show();
+        break;
+      default:
+        if (listener != null) {
+          this.currentPosition = menuItem.getItemId();
+          listener.onLanguageSelected(this.languages.get(this.currentPosition));
         }
-        drawerLayout.closeDrawers();
-        return true;
-      }
-    });
+    }
+    drawerLayout.closeDrawers();
+    return true;
+  }
+
+  public void setLanguageSelectedListener(LanguageSelectedListener listener) {
+    this.listener = listener;
   }
 
   interface LanguageSelectedListener {
     void onLanguageSelected(Language current);
+  }
+
+  @Override public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+    super.onSaveInstanceState(outState, outPersistentState);
+    outState.putInt(CURRENT_LANGUAGE, currentPosition);
+  }
+
+  @Override protected void onRestoreInstanceState(Bundle savedInstanceState) {
+    super.onRestoreInstanceState(savedInstanceState);
+    if (savedInstanceState != null) {
+      currentPosition = savedInstanceState.getInt(CURRENT_LANGUAGE);
+    }
   }
 }

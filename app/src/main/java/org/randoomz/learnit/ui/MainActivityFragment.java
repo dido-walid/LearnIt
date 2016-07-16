@@ -1,6 +1,7 @@
 package org.randoomz.learnit.ui;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -55,13 +56,13 @@ public class MainActivityFragment extends Fragment implements View.OnClickListen
   private LinearLayoutManager layoutManager;
   private Language current;
 
-  @Override
-  public void onAttach(Activity activity) {
-    super.onAttach(activity);
+  @Override public void onAttach(Context context) {
+    super.onAttach(context);
 
-    MyApp.objectGraph(activity).inject(this);
+    MyApp.objectGraph(context).inject(this);
     adapter = new ListVocabularyAdapter(this);
-    layoutManager = new LinearLayoutManager(activity);
+    layoutManager = new LinearLayoutManager(context);
+    ((MainActivity) getActivity()).setLanguageSelectedListener(this);
   }
 
   @Nullable @Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -99,7 +100,6 @@ public class MainActivityFragment extends Fragment implements View.OnClickListen
 
   @Override public void onLanguageSelected(Language current) {
     this.current = current;
-    // TODO https://code.google.com/p/android/issues/detail?id=175808 or https://code.google.com/p/android/issues/detail?id=175757
     collapsingToolbar.setTitle(current.language());
     subscribe = db.createQuery(Vocabulary.TABLE, Vocabulary.ALL_QUERY + " WHERE " + Vocabulary.LANG_TRANSLATED + " = ?", current.language())
         .map(Vocabulary.MAP)
